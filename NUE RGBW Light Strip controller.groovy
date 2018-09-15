@@ -19,16 +19,19 @@
  
  metadata {
 	// Automatically generated. Make future change here.
-	definition (name: "Improved Zigbee Hue Bulb MA - Test", namespace: "Sticks18", author: "Scott G") {
+	definition (name: "NUE Zigbee RGBW Light Strip Controller - Test", namespace: "Cuillan", author: "Carl A") {
 		capability "Switch Level"
 		capability "Actuator"
 		capability "Color Control"
-        capability "Color Temperature"
+		capability "Color Temperature"
 		capability "Switch"
 		capability "Configuration"
 		capability "Polling"
 		capability "Refresh"
 		capability "Sensor"
+		capability "Health Check" //T
+		capability "Light" //T
+
        
         command "setAdjustedColor"
         command "startLoop"
@@ -38,7 +41,13 @@
         
         command "alert"
         command "toggle"
-        
+
+	command "setColorName" //T
+ 	command "setColorRelax" //T
+	command "setColorEveryday" //T
+	command "setColorFocus" //T
+	command "nextColor" //T
+
         // This is a new temporary counter to keep track of no responses
         attribute "unreachable", "number"
         attribute "colorMode", "string"
@@ -49,41 +58,6 @@
         attribute "loopTime", "number"
         attribute "alert", "string"
 
-		fingerprint profileId: "C05E", inClusters: "0000,0003,0004,0005,0006,0008,0300,1000", outClusters: "0019"
-	}
-  
-metadata {
-  definition (name: "IKEA-Tradfri", namespace: "edvaldeysteinsson", author: "Edvald Eysteinsson") {
-    capability "Actuator"
-    capability "Color Temperature"
-    capability "Configuration"
-    capability "Health Check"
-    capability "Refresh"
-    capability "Switch"
-    capability "Switch Level"
-    capability "Light"
-
-    attribute "colorName", "string"
-
-    command "setColorName"
-    command "setColorRelax"
-    command "setColorEveryday"
-    command "setColorFocus"
-    command "nextColor"
-	
-    // Trådfri bulbs
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E27 WS�opal 980lm", deviceJoinName: "TRÅDFRI bulb E27 WS opal 980lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E27 WS opal 980lm", deviceJoinName: "TRÅDFRI bulb E27 WS opal 980lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E27 WS clear 950lm", deviceJoinName: "TRÅDFRI bulb E27 WS clear 950lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E26 WS�opal 980lm", deviceJoinName: "TRÅDFRI bulb E26 WS opal 980lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E26 WS opal 980lm", deviceJoinName: "TRÅDFRI bulb E26 WS opal 980lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E26 WS clear 950lm", deviceJoinName: "TRÅDFRI bulb E26 WS clear 950lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E14 WS opal 400lm", deviceJoinName: "TRÅDFRI bulb E14 WS opal 400lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb E12 WS opal 400lm", deviceJoinName: "TRÅDFRI bulb E12 WS opal 400lm"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "TRADFRI bulb GU10 WS 400lm", deviceJoinName: "TRÅDFRI bulb GU10 WS 400lm"
-    
-    // FLOALT panels
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "FLOALT panel WS 30x30", deviceJoinName: "FLOALT panel WS 30x30"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "FLOALT panel WS 30x90", deviceJoinName: "FLOALT panel WS 30x90"
-    fingerprint profileId: "0104", inClusters: "0000, 0003, 0004, 0005, 0006, 0008, 0300, 0B05, 1000", outClusters: "0005, 0019, 0020, 1000", manufacturer: "IKEA of Sweden",  model: "FLOALT panel WS 60x60", deviceJoinName: "FLOALT panel WS 60x60"
+	// NUE Zigbee RGBW Light Strip Controller (basic, identity, groups, scenes, on/off, level control, colour control)
+	fingerprint profileId: "C05E", inClusters: "0000,0003,0004,0005,0006,0008,0300"
   }
