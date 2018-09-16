@@ -84,9 +84,9 @@
 	tiles (scale: 2){
 		multiAttributeTile(name: "switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
         		tileAttribute("device.switchColor", key: "PRIMARY_CONTROL") {
-				attributeState "off", label: '${currentValue}', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff"
-				attributeState "Red", label: '${currentValue}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#ff0000"
-				attributeState "Brick Red", label: '${currentValue}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#ff3700"
+				attributeState "off", label: '${currentValue}', action: "switch.on", icon: "st.switches.light.off", backgroundColor: "#ffffff"
+				attributeState "Red", label: '${currentValue}', action: "switch.off", icon: "st.switches.light.on", backgroundColor: "#ff0000"
+				attributeState "Brick Red", label: '${currentValue}', action: "switch.off", icon: "st.switches.light.on", backgroundColor: "#ff3700"
     				attributeState "Safety Orange", label: '${currentValue}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#ff6F00"
     				attributeState "Dark Orange", label: '${currentValue}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#ff9900"
 	            		attributeState "Amber", label: '${currentValue}', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#ffbf00"
@@ -122,20 +122,17 @@
             			attributeState "level", label: 'Level is ${currentValue}%'
             		}
         	}
-        	standardTile("refresh", "device.switch", height: 2, width: 2, inactiveLabel: false, decoration: "flat") {
-			state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
-		}
 		controlTile("levelSliderControl", "device.level", "slider", height: 1, width: 4, inactiveLabel: false) {
 			state "level", action:"switch level.setLevel"
 		}
+        	valueTile("colorName", "device.colorName", height: 1, width: 2, inactiveLabel: false, decoration: "flat") {
+        		state "colorName", label: '${currentValue}'
+        	}
         	controlTile("colorTempSliderControl", "device.colorTemperature", "slider", height: 1, width: 4, inactiveLabel: false, range:"(2000..6500)") {
         		state "colorTemperature", action:"color temperature.setColorTemperature"
         	}
         	valueTile("colorTemp", "device.colorTemperature", height: 1, width: 2, inactiveLabel: false, decoration: "flat") {
         		state "colorTemperature", label: '${currentValue} K'
-        	}
-        	valueTile("colorName", "device.colorName", height: 1, width: 2, inactiveLabel: false, decoration: "flat") {
-        		state "colorName", label: '${currentValue}'
         	}
         	valueTile("colorMode", "device.colorMode", height: 2, width: 2, inactiveLabel: false, decoration: "flat") {
         		state "colorMode", label: '${currentValue}'
@@ -145,6 +142,9 @@
         		state "startingLoop", label: "Starting Loop", action: "stopLoop", backgroundColor: "#79b821", nextState: "stoppingLoop"
 			state "Inactive", label:'${currentValue}', action: "startLoop", backgroundColor: "#ffffff", nextState: "startingLoop"
         		state "stoppingLoop", label: "Stopping Loop", action: "startLoop", backgroundColor: "#ffffff", nextState: "startingLoop"
+		}
+        	standardTile("refresh", "device.switch", height: 2, width: 2, inactiveLabel: false, decoration: "flat") {
+			state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
 		}
         	controlTile("loopTimeControl", "device.loopTime", "slider", height: 2, width: 4, range: "(1..60)", inactiveLabel: false) {
         		state "loopTime", action: "setLoopTime"
@@ -175,10 +175,6 @@
 
     		controlTile("colorTempSliderControl", "device.colorTemperature", "slider", width: 4, height: 1, inactiveLabel: false, range:"(2200..4000)") {
       			state "colorTemperature", action:"setColorTemperature"
-    		}
-
-    		valueTile("colorName", "device.colorName", inactiveLabel: false, decoration: "flat", width: 4, height: 1) {
-      			state "colorName", label: '${currentValue}'
     		}
 
     		standardTile("refresh", "device.refresh", inactiveLabel: false, decoration: "flat", width: 2, height: 1) {
