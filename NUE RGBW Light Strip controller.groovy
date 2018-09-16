@@ -16,9 +16,10 @@
  *  for the specific language governing permissions and limitations under the License.
  */
  
- import physicalgraph.zigbee.zcl.DataType	//RGB
- 
- metadata {
+//RGB
+import physicalgraph.zigbee.zcl.DataType
+
+metadata {
 	// Automatically generated. Make future change here.
 	definition (name: "NUE Zigbee RGBW Light Strip Controller - Test", namespace: "Cuillan", author: "Carl A") {
 		//Hard
