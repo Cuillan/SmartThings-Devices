@@ -16,8 +16,8 @@
  *  for the specific language governing permissions and limitations under the License.
  */
  
-//RGB
-import physicalgraph.zigbee.zcl.DataType
+// RGB
+// import physicalgraph.zigbee.zcl.DataType
 
 metadata {
 	// Automatically generated. Make future change here.
@@ -719,5 +719,3 @@ private String swapEndianHex(String hex) {
 private Integer convertHexToInt(hex) {
 	Integer.parseInt(hex,16)
 }	
-
- }
